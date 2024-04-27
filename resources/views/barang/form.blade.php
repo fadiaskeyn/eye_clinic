@@ -46,18 +46,18 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        {{--  <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="harga_beli">Harga Beli</label>
                                     <input type="text" class="form-control jumlah" id="harga-beli" name="harga_beli">
                                 </div>
                             </div>
-                        </div>
+                        </div>  --}}
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="harga_jual">Harga Jual</label>
-                                <input type="text" class="form-control jumlah" id="harga-jual" name="harga_jual">
+                                <label for="harga">Harga</label>
+                                <input type="text" class="form-control jumlah" id="harga-jual" name="harga">
                             </div>
                         </div>
                         <div class="col-md-6">

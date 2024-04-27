@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('kode_transaksi');
             $table->integer('barang_id');
-            $table->float('harga');
-            $table->integer('jumlah');
+            $table->float('harga_jual');
+            $table->bigInteger('jumlah');
             $table->float('diskon');
             $table->float('total');
+            $table->string('pasien')->nullable();
+            $table->string('diagnosa')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login Kasir</title>
+    <title>Login Dokter</title>
     <link rel="icon" href="{{asset('assets/img/unsplash/logo.png')}}" type="image/x-icon">
 
     <!-- General CSS Files -->
@@ -34,7 +34,7 @@
 
                         <div class="card card-info shadow">
                             <div class="card-header">
-                                <h4 class="text-info">Toko Kelontong</h4>
+                                <h4 class="text-info">Klinik Mata Bjir</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="/postlogin" class="needs-validation">

@@ -1,13 +1,10 @@
 @extends('layout.app')
-
 @section('title', ' - Laporan')
-
 @section('content')
 <section class="section">
     <div class="section-header">
         <h1>Laporan</h1>
     </div>
-
     <div class="section-body">
         <div class="row">
             <div class="col-12">
@@ -37,7 +34,7 @@
                         </form>
                     </div>
                     @endif
-                    @if(auth()->user()->level == 'kasir')
+                    @if(auth()->user()->level == 'admin')
                     <div class="card-header bg-white">
                         <h4 class="text-primary">Riwayat Transaksi</h4>
                     </div>
@@ -49,28 +46,42 @@
                                     <th>No.</th>
                                     <th>Kode Transaksi</th>
                                     <th>Tanggal</th>
-                                    <th>Kode Kasir</th>
+                                    <th>Kode Dokter</th>
                                     <th>Total</th>
-                                    <th>Bayar</th>
-                                    <th>Kembali</th>
+                                    <th hidden>Bayar</th>
+                                    <th hidden>Kembali</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($transaksi as $item)
+                                @foreach($transaksi as  $item)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$item->kode_transaksi}}</td>
-                                    <td>{{$item->tanggal}}</td>
+                                    <td>{{$item->created_at}}</td>
                                     <td>{{$item->kode_kasir}}</td>
                                     <td>{{$item->formatRupiah('total')}}</td>
-                                    <td>{{$item->formatRupiah('bayar')}}</td>
-                                    <td>{{$item->formatRupiah('kembali')}}</td>
+                                    <td hidden>{{$item->formatRupiah('bayar')}}</td>
+                                    <td hidden>{{$item->formatRupiah('kembali')}}</td>
                                     <td>
                                         <a href="/{{auth()->user()->level}}/laporan/{{$item->kode_transaksi}}"
                                             class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i> Detail</a>
-                                        <a href="/{{auth()->user()->level}}/laporan/{{$item->kode_transaksi}}/print" target="_blank"
-                                            class="btn btn-sm btn-outline-danger"><i class="fa fa-print"></i> Print</a>
+
+                                            <a href="/{{auth()->user()->level}}/laporan/{{$item->kode_transaksi}}/print"
+                                                class="btn btn-sm btn-outline-danger @if($item->status == 'paid') disabled @endif">
+                                                 <i class="fa fa-print"></i> Print
+                                             </a>
+
+                                             <a data-target="#form-paid{{ $item->kode_transaksi }}" name="paid"
+                                                class="btn btn-sm @if($item->status == 'succes') btn-outline-warning disabled @else btn-outline-success @endif paid-btn"
+                                                data-toggle="modal" data-nomor="{{ $item->kode_transaksi }}" data-status="{{ $item->status }}">
+                                                 <i class="fa-solid fa-money-bill-wave" style="color:
+                                                     @if($item->status == 'succes') #2cf271 @else #ffcc00 @endif;"></i>
+                                                 {{ $item->status }}
+                                             </a>
+
+
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -82,28 +93,75 @@
         </div>
     </div>
 </section>
+@include('laporan.formpaid')
 @endsection
 @push('script')
-<script>
-    $(document).ready(function () {
-        $('#table').DataTable();
-    });
+    <script>
+        $(document).ready(function () {
+            $('.paid-btn').click(function () {
+                var nomor = $(this).data('nomor');
+                var status = $(this).data('status');
+                $('#form-paid').data('nomor', nomor);
+                $('#form-paid').find('.modal-title').text('Transaksi Pembayaran ' + status);
 
-    // Mendapatkan elemen input tanggal
-    var tanggal_dari = document.getElementById('tanggalDari');
-    var tanggal_sampai = document.getElementById('tanggalSampai');
+                // Mengambil nilai total dari input
+                var totalBayar = parseFloat($('#total-harganya').val()) || 0;
 
-    // Mendapatkan tanggal hari ini
-    var today = new Date();
-    var year = today.getFullYear();
-    var month = String(today.getMonth() + 1).padStart(2, '0'); // Tambahkan nol di depan jika bulan < 10
-    var day = String(today.getDate()).padStart(2, '0'); // Tambahkan nol di depan jika tanggal < 10
+                // Memperbarui teks pada elemen h1
+                $('#label-total-bayar').text(totalBayar.toLocaleString('id-ID'));
 
-    // Format tanggal sebagai "YYYY-MM-DD" (format yang diharapkan untuk input type="date")
-    var formattedDate = year + '-' + month + '-' + day;
+                $('#form-paid').modal('show');
+            });
 
-    // Set nilai input tanggal menjadi tanggal hari ini
-    tanggal_dari.value = formattedDate;
-    tanggal_sampai.value = formattedDate;
-</script>
+            $('#bayar').on('input', function () {
+                hitungKembali();
+            });
+        });
+
+        function hitungKembali() {
+            var totalBayar = parseFloat($('#total-harganya').val()) || 0;
+            var bayar = parseFloat($('#bayar').val()) || 0;
+            var kembali = bayar - totalBayar;
+            $('#kembali').val(kembali.toLocaleString('id-ID'));
+        }
+
+        function simpan() {
+            event.preventDefault();
+            var bayar = parseFloat($('#bayar').val()) || 0;
+            var kembali = parseFloat($('#kembali').val()) || 0;
+            var form_bayar = $('#form-paid');
+
+            if (bayar == 0) {
+                iziToast.warning({
+                    title: 'Transaksi Gagal',
+                    message: 'Jumlah Bayar Kurang !',
+                    position: 'topRight'
+                });
+            } else {
+                swal({
+                    title: 'Simpan Transaksi ?',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((bayar) => {
+                    if (bayar) {
+                        form_bayar.submit();
+                    } else {
+                        iziToast.success({
+                            title: 'Transaksi Dibatalkan',
+                            position: 'topRight'
+                        });
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            $('.modal').on('hidden.bs.modal', function (e) {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $(this).removeData('bs.modal');
+            });
+        });
+    </script>
 @endpush

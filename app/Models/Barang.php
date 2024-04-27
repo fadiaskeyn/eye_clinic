@@ -20,8 +20,7 @@ class Barang extends Model
         'kode',
         'nama',
         'kategori_id',
-        'harga_beli',
-        'harga_jual',
+        'harga',
         'satuan_id',
         'stok',
     ];
@@ -38,10 +37,10 @@ class Barang extends Model
         return $this->belongsTo(Satuan::class);
     }
 
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class);
-    }
+    // public function supplier()
+    // {
+    //     return $this->belongsTo(Supplier::class);
+    // }
 
     public function TransaksiSementara()
     {

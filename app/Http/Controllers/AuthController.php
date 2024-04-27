@@ -23,7 +23,7 @@ class AuthController extends Controller
             $now = Carbon::now();
             $tahun_bulan = $now->year . $now->month;
             $cek = User::count();
-            
+
             if($cek == 0){
                 $urut = 100001;
                 $kode = 'K-' . $tahun_bulan . $urut;
@@ -39,7 +39,7 @@ class AuthController extends Controller
                 'password' => 'required|string',
                 'level' => 'required|string',
             ]);
-    
+
             $user = new User;
             $user->kode = $kode;
             $user->nama = $request->nama;
@@ -47,8 +47,8 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->level = $request->level;
             $user->save();
-    
-    
+
+
             return redirect('login')->with('sukses', 'Berhasil Daftar, Silahkan Login!');
         }catch(\Exception $e){
             return redirect('daftar')->with('status', 'Tidak Berhasil Daftar. Pesan Kesalahan: '.$e->getMessage());
@@ -68,7 +68,7 @@ class AuthController extends Controller
             if($user->level == 'admin'){
                 return redirect('/admin/dashboard');
             }else{
-                return redirect('/kasir/dashboard');
+                return redirect('/dokter/dashboard');
             }
         }
         else {

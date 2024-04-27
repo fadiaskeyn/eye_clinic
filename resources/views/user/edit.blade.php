@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="section">
-    <div class="section-header">
+    <div class="section-    eader">
         <h1>User</h1>
     </div>
 
@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="kode">Kode</label>
-                                <input type="text" name="kode" class="form-control" value="{{$user->kode}}" disabled>
+                                <input type="text" name="kode" class="form-control" value="{{$user->kode}}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -45,7 +45,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="Level">Level</label>
-                                <input type="text" class="form-control" value="{{$user->level}}" name="level" disabled>
+                                <input type="text" class="form-control" value="{{$user->level}}" name="level" readonly>
                             </div>
                         </div>
                     </div>

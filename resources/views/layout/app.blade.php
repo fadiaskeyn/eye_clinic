@@ -10,6 +10,8 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('assets/modules/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/modules/fontawesome/css/all.min.css')}}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{asset('assets/modules/izitoast/css/iziToast.min.css')}}">
@@ -62,13 +64,16 @@
   <script src="{{asset('assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
   <script src="{{asset('assets/modules/moment.min.js')}}"></script>
   <script src="{{asset('assets/js/stisla.js')}}"></script>
-  
+
     <!-- JS Libraies -->
     <script src="{{asset('assets/modules/sweetalert/sweetalert.min.js')}}"></script>
     <script src="{{asset('assets/modules/datatables/datatables.min.js')}}"></script>
     <script src="{{asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}}"></script>
     <script src="{{asset('assets/modules/jquery-ui/jquery-ui.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
   <!-- Page Specific JS File -->
   <script src="{{asset('assets/js/page/modules-sweetalert.js')}}"></script>
@@ -76,7 +81,7 @@
     <script src="{{asset('assets/modules/sweetalert/sweetalert.min.js')}}"></script>
 
   <!-- Page Specific JS File -->
-  
+
   <!-- Template JS File -->
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>

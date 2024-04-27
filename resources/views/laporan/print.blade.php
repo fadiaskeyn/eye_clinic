@@ -81,12 +81,14 @@
 <body>
     <div class="transaksi-container">
         <div class="transaksi-header">
-            <h2>Transaksi</h2>
+            <h2>Clinic Mata Fiersa</h2>
         </div>
         <div class="transaksi-details">
-            <label>Kode Transaksi:</label> <span>{{$transaksi->kode_transaksi}}</span><br>
-            <label>Kode Kasir:</label> <span>{{$transaksi->kode_kasir}}</span><br>
-            <label>Waktu:</label> <span>{{$transaksi->tanggal}}</span><br>
+            <label>Kode Berobat: </label> <span>{{$transaksi->kode_transaksi}}</span>
+            <label>Kode Dokter: </label> <span>{{$transaksi->kode_kasir}}</span>
+                 <label>Waktu: </label> <span>{{$transaksi->created_at}}</span>
+                 <label>Nama Pasien: </label> <span>{{$transaksi->pasien}}</span>
+                 <label>Diagnosa: </label> <span>{{$transaksi->diagnosa}}</span>
             <table style="width: 100%; margin-bottom: 30px">
                 <thead>
                     <tr>

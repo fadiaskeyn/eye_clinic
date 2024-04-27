@@ -5,7 +5,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Barang</h1>
+        <h1>Produk & Jasa</h1>
     </div>
 
     <div class="section-body">
@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="card shadow">
                     <div class="card-header bg-white">
-                        <h4 class="position-absolute text-primary">Data Barang</h4>
+                        <h4 class="position-absolute text-primary"> Data Produk & Jasa</h4>
                         <div class="card-header-form float-right">
                             <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal"
                                 data-target="#form-tambah"><i class="fa fa-plus"></i> Tambah</button>
@@ -27,8 +27,7 @@
                                         <th>No.</th>
                                         <th>Kode</th>
                                         <th style="width: 20%">Nama</th>
-                                        <th>Harga Beli</th>
-                                        <th>Harga Jual</th>
+                                        <th>Harga</th>
                                         <th>Stok</th>
                                         <th>Diskon</th>
                                         <th>Aksi</th>
@@ -40,8 +39,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->kode}}</td>
                                         <td>{{$item->nama}}</td>
-                                        <td>{{$item->formatRupiah('harga_beli')}}</td>
-                                        <td>{{$item->formatRupiah('harga_jual')}}</td>
+                                        {{--  <td>{{$item->formatRupiah('harga_beli')}}</td>  --}}
+                                        <td>{{$item->formatRupiah('harga')}}</td>
                                         @if($item->stok <= 0)
                                         <td><span class="text-danger">Stok Habis</span></td>
                                         @endif
@@ -95,7 +94,7 @@
 
     // Mengambil elemen input
     var harga_beli = document.getElementById('harga-beli');
-    var harga_jual = document.getElementById('harga-jual');
+    var harga = document.getElementById('harga');
     var diskon = document.getElementById('diskon');
 
     // Menambahkan event listener untuk setiap kali ada input
@@ -105,7 +104,7 @@
     });
 
     // Menambahkan event listener untuk setiap kali ada input
-    harga_jual.addEventListener('input', function() {
+    harga.addEventListener('input', function() {
       // Mengganti nilai input hanya dengan karakter angka
       this.value = this.value.replace(/[^0-9]/g, '');
     });

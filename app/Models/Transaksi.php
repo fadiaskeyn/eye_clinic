@@ -18,6 +18,9 @@ class Transaksi extends Model
         'bayar',
         'kembali',
         'kode_kasir',
+        'pasien',
+        'diagnosa',
+        'status'
     ];
 
     public function user()

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Daftar Kasir</title>
+    <title>Daftar Dokter</title>
     <link rel="icon" href="{{asset('assets/img/unsplash/logo.png')}}" type="image/x-icon">
 
     <!-- General CSS Files -->
@@ -80,7 +80,7 @@
                                                 <select class="custom-select" name="level" id="">
                                                     <option value="">Pilih Level...</option>
                                                     <option value="admin">Admin</option>
-                                                    <option value="kasir">Kasir</option>
+                                                    <option value="dokter">dokter</option>
                                                 </select>
                                             </div>
                                         </div>

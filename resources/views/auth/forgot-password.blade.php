@@ -61,7 +61,7 @@
                     </div>
                     <div class="card-body">
 
-                        <p class="text-muted">Masukkan email Anda untuk rubah password.</p>
+                        <p class="text-muted">Masukwn email Anda untuk rubah password.</p>
                         <form action="{{ route('password.email') }}" method="POST">
                             @csrf
                             <div class="mb-3">

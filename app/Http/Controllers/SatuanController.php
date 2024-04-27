@@ -50,7 +50,7 @@ class SatuanController extends Controller
      */
     public function show()
     {
-        
+
     }
 
     /**
@@ -72,11 +72,11 @@ class SatuanController extends Controller
             $request->validate([
                 'nama' => 'required|string|max:255',
             ]);
-    
+
             $satuan = Satuan::find($id);
             $satuan->nama = $request->nama;
             $satuan->update();
-    
+
             return redirect('/admin/satuan')->with('sukses', 'Data Berhasil di Edit');
         }catch(\Exception $e){
             return redirect('/admin/satuan')->with('gagal', 'Data Tidak Berhasil di Edit. Pesan Kesalahan: '.$e->getMessage());

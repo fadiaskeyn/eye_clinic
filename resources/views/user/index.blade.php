@@ -40,8 +40,8 @@
                                     <td>{{$item->email}}</td>
                                     @if($item->level == 'admin')
                                     <td><div class="badge badge-success">Admin</div></td>
-                                    @elseif($item->level == 'kasir')
-                                    <td><div class="badge badge-info">Kasir</div></td>
+                                    @elseif($item->level == 'dokter')
+                                    <td><div class="badge badge-info">dokter</div></td>
                                     @endif
                                     <td>
                                         <form action="/{{auth()->user()->level}}/user/{{$item->id}}" id="delete-form">
@@ -76,7 +76,7 @@
 
     var data_anggota = $(this).attr('data-id')
     function confirmDelete(button) {
-    
+
         event.preventDefault()
         const id = button.getAttribute('data-id');
         const kode = button.getAttribute('id');

@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('kode_transaksi');
-            $table->float('total');
-            $table->float('bayar');
-            $table->float('kembali');
+            $table->float('total')->nullable();
+            $table->float('bayar')->nullable();
+            $table->float('kembali')->nullable();
             $table->string('kode_kasir');
             $table->datetime('tanggal');
+            $table->enum('status',['unpaid','paid']);
             $table->timestamps();
         });
     }

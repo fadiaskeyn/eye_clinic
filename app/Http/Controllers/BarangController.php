@@ -53,25 +53,23 @@ class BarangController extends Controller
                 'kode' => 'required|string|max:255',
                 'nama' => 'required|string|max:255',
                 'kategori_id' => 'required|exists:kategoris,id',
-                'harga_beli' => 'required|numeric|min:0',
-                'harga_jual' => 'required|numeric|min:0',
-                'satuan_id' => 'required|exists:satuans,id', 
+                'harga' => 'required|numeric|min:0',
+                'satuan_id' => 'required|exists:satuans,id',
                 'stok' => 'required|integer|min:0',
                 'diskon' => 'nullable|numeric|min:0|max:100',
             ]);
-    
+
             $barang = new Barang;
             $barang->kode = $request->kode;
             $barang->nama = $request->nama;
             $barang->kategori_id = $request->kategori_id;
-            $barang->harga_beli = $request->harga_beli;
-            $barang->harga_jual = $request->harga_jual;
+            $barang->harga = $request->harga;
             $barang->satuan_id = $request->satuan_id;
             $barang->stok = $request->stok;
             $barang->diskon = $request->diskon;
             $barang->save();
-    
-    
+
+
             return redirect('/admin/barang')->with('sukses', 'Data Berhasil di Simpan');
         }catch(\Exception $e){
             return redirect('/admin/barang')->with('gagal', 'Data Tidak Berhasil di Simpan. Pesan Kesalahan: '.$e->getMessage());
@@ -111,24 +109,22 @@ class BarangController extends Controller
             $request->validate([
                 'nama' => 'required|string|max:255',
                 'kategori_id' => 'required|exists:kategoris,id',
-                'harga_beli' => 'required|numeric|min:0',
-                'harga_jual' => 'required|numeric|min:0',
-                'satuan_id' => 'required|exists:satuans,id', 
+                'harga' => 'required|numeric|min:0',
+                'satuan_id' => 'required|exists:satuans,id',
                 'stok' => 'required|integer|min:0',
                 'diskon' => 'nullable|numeric|min:0|max:100',
             ]);
-    
+
             $barang = Barang::find($id);
             $barang->nama = $request->nama;
             $barang->kategori_id = $request->kategori_id;
-            $barang->harga_beli = $request->harga_beli;
-            $barang->harga_jual = $request->harga_jual;
+            $barang->harga = $request->harga;
             $barang->satuan_id = $request->satuan_id;
             $barang->stok = $request->stok;
             $barang->diskon = $request->diskon;
             $barang->update();
-    
-    
+
+
             return redirect('/admin/barang')->with('sukses', 'Data Berhasil di Edit');
         }catch(\Exception $e){
             return redirect('/admin/barang')->with('gagal', 'Data Tidak Berhasil di Edit. Pesan Kesalahan: '.$e->getMessage());

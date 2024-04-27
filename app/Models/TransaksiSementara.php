@@ -19,6 +19,8 @@ class TransaksiSementara extends Model
         'jumlah',
         'diskon',
         'total',
+        'pasien',
+        'diagnosa',
     ];
 
     public function barang()

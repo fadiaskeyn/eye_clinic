@@ -56,18 +56,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <div class="form-group">
-                                    <label for="harga_beli">Harga Beli</label>
-                                    <input type="text" class="form-control jumlah" id="harga-beli" name="harga_beli"
-                                        value="{{$barang->harga_beli}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="harga_jual">Harga Jual</label>
-                                <input type="text" class="form-control jumlah" id="harga-jual" name="harga_jual"
-                                    value="{{$barang->harga_jual}}">
+                                <label for="harga">Harga Jual</label>
+                                <input type="text" class="form-control jumlah" id="harga-jual" name="harga"
+                                    value="{{$barang->harga}}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -108,18 +99,15 @@
     });
 
     // Mengambil elemen input
-    var harga_beli = document.getElementById('harga-beli');
-    var harga_jual = document.getElementById('harga-jual');
+
+    var harga = document.getElementById('harga-jual');
     var diskon = document.getElementById('diskon');
 
     // Menambahkan event listener untuk setiap kali ada input
-    harga_beli.addEventListener('input', function() {
-      // Mengganti nilai input hanya dengan karakter angka
-      this.value = this.value.replace(/[^0-9]/g, '');
-    });
+
 
     // Menambahkan event listener untuk setiap kali ada input
-    harga_jual.addEventListener('input', function() {
+    harga.addEventListener('input', function() {
       // Mengganti nilai input hanya dengan karakter angka
       this.value = this.value.replace(/[^0-9]/g, '');
     });
